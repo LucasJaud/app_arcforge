@@ -14,12 +14,16 @@ export class UserServiceService {
   constructor(private httpClient: HttpClient) {
    }
  
-   login(user: User): Observable<User | null>{
+   login(user: User): Observable<any> {
     return this.httpClient.post<User>(this.API+"login", user);
    }
 
-   signIn(user:User): Observable<User | null>{
+   signIn(user:User): Observable<any> {
     return this.httpClient.post<User>(this.API+"signIn", user);
+   }
+
+   getUserById(id: number): Observable<User | null>{
+    return this.httpClient.get<User>(`${this.API}user/${id}`)
    }
    
 }

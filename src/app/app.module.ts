@@ -10,6 +10,7 @@ import {SigninComponent} from './components/signin/signin.component';
 import { HttpClientModule,HttpClient } from '@angular/common/http';
 import { HomeComponent } from './components/home/home.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { CommonModule } from '@angular/common';
 
 
 
@@ -29,6 +30,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     RouterModule.forRoot(routes),
     HttpClientModule,
     HttpClient,
+    CommonModule
 
   ],
   providers: [],

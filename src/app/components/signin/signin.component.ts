@@ -4,10 +4,11 @@ import { Router } from '@angular/router';
 import { User } from '../../models/user';
 import { UserServiceService } from '../../services/user-service.service';
 import { HttpClient,HttpClientModule } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-signin',
-  imports: [FormsModule,HttpClientModule],
+  imports: [FormsModule,CommonModule],
   templateUrl: './signin.component.html',
   styleUrl: './signin.component.css',
   providers:[UserServiceService]
@@ -30,13 +31,16 @@ export class SigninComponent {
     this.service.signIn(this.user).subscribe({
       next: (response) => {
         if (response) {
-          this.successMessage = 'Conta criada com sucesso!';
-          // Redireciona para a página de login após um breve atraso
-          setTimeout(() => {
-            this.router.navigate(["login"]);
-          }, 1500);
+          console.log('Resposta bruta do backend:', response);
+          if (response && response.id) {  // <-- Garante que há um ID válido na resposta
+            console.log('Usuário cadastrado com sucesso:', response);
+            this.successMessage = 'Conta criada com sucesso!';
+            setTimeout(() => {
+                this.router.navigate(["login"]);
+            }, 1500);
         } else {
-          this.errorMessage = 'Falha ao criar conta. Tente novamente.';
+            this.errorMessage = 'Falha ao criar conta. Resposta inesperada.';
+        }
         }
       },
       error: (error) => {

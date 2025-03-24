@@ -4,15 +4,15 @@ import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router} from '@angular/router';
 import { UserServiceService } from '../../services/user-service.service';
 import { HttpClient,HttpClientModule } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
 
 
 @Component({
   selector: 'app-login',
-  imports: [FormsModule,HttpClientModule],
+  imports: [FormsModule,CommonModule],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  providers:[UserServiceService
-  ]
+  // providers:[UserServiceService]
 })
 export class LoginComponent {
   user: User = new User("", "", "");
@@ -33,9 +33,7 @@ export class LoginComponent {
           this.user = response;
           
           // Navega para a página do usuário
-          this.router.navigate([`userpage/${this.user.id}`]).then(() => {
-            window.location.reload();
-          });
+          this.router.navigate([`userpage/${this.user.id}`]);
         } else {
           this.errorMessage = 'Login falhou. Usuário ou senha inválidos.';
         }

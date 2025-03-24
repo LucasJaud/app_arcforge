@@ -1,1 +1,27 @@
-<p>dashboard works!</p>
+<div class="min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-white flex justify-center items-center p-6">
+    <div class="w-full max-w-3xl bg-white dark:bg-gray-800 shadow-lg rounded-2xl p-6">
+      <!-- Mensagem de carregamento -->
+      <div *ngIf="isLoading" class="text-center text-gray-500 dark:text-gray-300 text-lg">
+        Carregando informações do usuário...
+      </div>
+  
+      <!-- Mensagem de erro -->
+      <div *ngIf="errorMessage" class="text-center text-red-500 font-medium">
+        {{ errorMessage }}
+      </div>
+  
+      <!-- Dashboard do Usuário -->
+      <div *ngIf="user && !isLoading" class="text-center">
+        <h2 class="text-3xl font-semibold text-gray-900 dark:text-white mb-4">
+          Dashboard de {{ user.name }}
+        </h2>
+  
+        <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg shadow-md">
+          <p class="text-gray-700 dark:text-gray-300"><strong>ID:</strong> {{ user.id }}</p>
+          <p class="text-gray-700 dark:text-gray-300"><strong>Nome:</strong> {{ user.name }}</p>
+          <p class="text-gray-700 dark:text-gray-300"><strong>Email:</strong> {{ user.email }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
