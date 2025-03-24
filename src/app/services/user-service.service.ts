@@ -9,9 +9,17 @@ import { Observable } from 'rxjs';
 })
 export class UserServiceService {
 
+  API = "http://localhost:8080/"
+
   constructor(private httpClient: HttpClient) {
    }
  
+   login(user: User): Observable<User | null>{
+    return this.httpClient.post<User>(this.API+"login", user);
+   }
 
+   signIn(user:User): Observable<User | null>{
+    return this.httpClient.post<User>(this.API+"signIn", user);
+   }
    
 }
